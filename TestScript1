@@ -1,8 +1,10 @@
- 지원(JJsploit/Temple/Electron 및 cloneref가 없거나 정말 똥 버전이 없는 기타 스플로잇에 대한 지원을 추가합니다.)
+-- Cloneref 지원(JJsploit/Temple/Electron 및 cloneref가 없거나 정말 똥 버전이 없는 기타 스플로잇에 대한 지원을 추가합니다.)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/CloneRef.lua", true))()
 
 -- 덱스 우회
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/Bypasses.lua", true))()
+
+-- CloneRef 지원이 포함된 Dex(글로벌로 제작됨)
 print(1)
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local UserInputService = game:GetService("UserInputService")

@@ -1,0 +1,100 @@
+-- Cloneref 지원(JJsploit/Temple/Electron 및 cloneref 또는 정말 똥 버전이 없는 기타 스플로잇에 대한 지원을 추가합니다.) 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts) /main/Universal/CloneRef.lua", true))() 
+
+-- Dex 우회 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/Bypasses.lua", true ))() 
+
+-- CloneRef 지원이 포함된 Dex(전역으로 제작됨) 
+getgenv().Bypassed_Dex = game:GetObjects("rbxassetid://9352453730")[1] 
+
+local charset = {} 
+for i = 48, 57 do table. insert(charset, string.char(i)) end 
+for i = 65, 90 do table.insert(charset, string.char(i)) end 
+for i = 97, 122 do table.insert(charset, string.char( 나)) 끝
+function RandomCharacters(length) 
+    if length > 0 then 
+        return RandomCharacters(length - 1) .. charset[math.random(1, #charset)] 
+    else 
+        return "" 
+    end 
+end 
+
+Bypassed_Dex.Name = RandomCharacters(math.random(5, 20) )) 
+gethui이면 
+    Bypassed_Dex.Parent = gethui(); 
+elseif syn 및 syn.protect_gui then 
+    syn.protect_gui(Bypassed_Dex); 
+    Bypassed_Dex.Parent = cloneref(game:GetService("CoreGui")) 
+else 
+    Bypassed_Dex.Parent = cloneref(game:GetService("CoreGui")) 
+end 
+
+로컬 함수 Load(Obj, Url) 
+    로컬 함수 GiveOwnGlobals(Func, Script) 
+        로컬 Fenv = {}
+        local RealFenv = {script = Script} 
+        local FenvMt = {} 
+        function FenvMt:__index(b) 
+            if RealFenv[b] == nil then 
+                return getfenv()[b] 
+            else 
+                return RealFenv[b] 
+            end 
+        end 
+        function FenvMt:__newindex(b , c) 
+            if RealFenv[b] == nil then 
+                getfenv()[b] = c 
+            else 
+                RealFenv[b] = c 
+            end 
+        end 
+        setmetatable(Fenv, FenvMt) 
+        setfenv(Func, Fenv) 
+        return Func 
+    end 
+    
+    로컬 함수 LoadScripts(Script)
+        if Script.ClassName == "Script" 또는 Script.ClassName == "LocalScript" then 
+            task.spawn(GiveOwnGlobals(loadstring(Script.Source, "=" .. Script:GetFullName()), Script)) 
+        end 
+        for _, v in ipairs(Script:GetChildren()) do 
+            LoadScripts(v) 
+        end 
+    end 
+    
+    LoadScripts(Obj) 
+end 
+
+Load(Bypassed_Dex)
+print(1)
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local Client = Players.LocalPlayer
+
+local DebrisFolder: Folder = workspace.Debris
+
+local ControlService = {}
+ControlService.ScriptEnabled = Instance.new("BoolValue", Client)
+ControlService.ScriptEnabled.Name = "ScriptEnabled"
+ControlService.ScriptEnabled.Value = true
+ControlService.AutoDodgeSettings = {
+	Enabled = true,
+	Magnitude = 10,
+}
+
+function ControlService:CanCall()
+	return ControlService.ScriptEnabled.Value
+end
+
+DebrisFolder.ChildAdded:Connect(function(child)
+	if child:IsA("Part") then
+		if child.Name == "SoundPart" then
+			local new = child:Clone()
+			new.Name = "newSoundPart"
+			new.Transparency = 0
+			print(1)
+		end
+	end
+end)

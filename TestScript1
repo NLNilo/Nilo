@@ -1,0 +1,34 @@
+print(1)
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local Client = Players.LocalPlayer
+
+local DebrisFolder: Folder = workspace.Debris
+
+local ControlService = {}
+ControlService.ScriptEnabled = Instance.new("BoolValue", Client)
+ControlService.ScriptEnabled.Name = "ScriptEnabled"
+ControlService.ScriptEnabled.Value = true
+ControlService.AutoDodgeSettings = {
+	Enabled = true,
+	Magnitude = 10,
+}
+
+function ControlService:CanCall()
+	return ControlService.ScriptEnabled.Value
+end
+
+DebrisFolder.ChildAdded:Connect(function(child)
+	if child:IsA("Part") then
+		if child.Name == "SoundPart" then
+			local new = child:Clone()
+			new.Name = "newSoundPart"
+			new.Transparency = 0
+			print(1)
+		end
+	end
+end)
+
+
